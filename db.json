@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": 1788691325480,
+      "username": "cjz",
+      "email": "cjz@cjzoj.com",
+      "password": "NDU2NzU2",
+      "role": "admin",
+      "solvedProblems": [],
+      "createdAt": "2026-09-06T10:42:04.805Z"
+    }
+  ],
+  "problems": [],
+  "submissions": [],
+  "posts": [],
+  "articles": [],
+  "contests": [],
+  "pendingProblems": [],
+  "pendingContests": [],
+  "bindings": [
+    {
+      "userId": 1788691325480,
+      "codeforces": null,
+      "atcoder": "chenjiznzhou",
+      "spoj": null,
+      "uva": null
+    }
+  ]
+}

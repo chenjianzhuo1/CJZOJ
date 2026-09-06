@@ -101,7 +101,7 @@
         .rmj-container, .binding-container { background:white; border-radius:8px; padding:30px; box-shadow:var(--shadow); max-width:800px; margin:0 auto; }
         .binding-card { border:1px solid var(--border-color); border-radius:8px; padding:20px; margin-bottom:15px; }
         .binding-card h3 { margin-bottom:10px; }
-        .binding-card input { width:calc(100% - 100px); padding:8px; border:1px solid var(--border-color); border-radius:6px; margin-right:10px; }
+        .binding-card input, .binding-card textarea { width:100%; padding:8px; border:1px solid var(--border-color); border-radius:6px; margin-bottom:10px; }
         .binding-card button { padding:8px 16px; background:var(--primary-color); color:white; border:none; border-radius:6px; cursor:pointer; }
         @media (max-width:768px) {
             .nav-toggle { display:block; }
@@ -137,6 +137,7 @@
     </nav>
 
     <main class="main-container">
+        <!-- 题目列表页 -->
         <div id="problemsPage" class="page active">
             <div class="page-header">
                 <h1>题目列表</h1>
@@ -170,6 +171,7 @@
             </div>
         </div>
 
+        <!-- 题目详情页 -->
         <div id="problemDetailPage" class="page">
             <button class="back-btn" onclick="showPage('problems')"><i class="fas fa-arrow-left"></i> 返回列表</button>
             <div class="problem-detail-container">
@@ -190,6 +192,7 @@
             </div>
         </div>
 
+        <!-- 提交记录页 -->
         <div id="submissionsPage" class="page">
             <h1>提交记录</h1>
             <div class="submissions-table-container">
@@ -200,6 +203,7 @@
             </div>
         </div>
 
+        <!-- 排行榜页 -->
         <div id="rankingPage" class="page">
             <h1>排行榜</h1>
             <div class="ranking-table-container">
@@ -210,6 +214,7 @@
             </div>
         </div>
 
+        <!-- 比赛列表页 -->
         <div id="contestPage" class="page">
             <div class="page-header">
                 <h1>比赛</h1>
@@ -218,11 +223,13 @@
             <div id="contestList"></div>
         </div>
 
+        <!-- 比赛详情页 -->
         <div id="contestDetailPage" class="page">
             <button class="back-btn" onclick="showPage('contest')"><i class="fas fa-arrow-left"></i> 返回比赛列表</button>
             <div class="detail-container" id="contestDetail"></div>
         </div>
 
+        <!-- 讨论区列表页 -->
         <div id="discussionPage" class="page">
             <div class="page-header">
                 <h1>讨论区</h1>
@@ -231,11 +238,13 @@
             <div class="card-list" id="postList"></div>
         </div>
 
+        <!-- 讨论详情页 -->
         <div id="discussionDetailPage" class="page">
             <button class="back-btn" onclick="showPage('discussion')"><i class="fas fa-arrow-left"></i> 返回讨论区</button>
             <div class="detail-container" id="postDetail"></div>
         </div>
 
+        <!-- 文章列表页 -->
         <div id="articlePage" class="page">
             <div class="page-header">
                 <h1>文章区</h1>
@@ -244,44 +253,44 @@
             <div class="card-list" id="articleList"></div>
         </div>
 
+        <!-- 文章详情页 -->
         <div id="articleDetailPage" class="page">
             <button class="back-btn" onclick="showPage('article')"><i class="fas fa-arrow-left"></i> 返回文章区</button>
             <div class="detail-container" id="articleDetail"></div>
         </div>
 
+        <!-- 绑定账号页 -->
         <div id="bindingPage" class="page">
             <h1>账号绑定</h1>
             <div class="binding-container">
                 <div class="binding-card">
-                    <h3>Codeforces</h3>
-                    <input type="text" id="cfHandle" placeholder="输入 CF Handle">
-                    <button onclick="bindAccount('codeforces')">绑定</button>
-                </div>
-                <div class="binding-card">
                     <h3>AtCoder</h3>
-                    <input type="text" id="atHandle" placeholder="输入 AtCoder Handle">
+                    <input type="text" id="atHandle" placeholder="用户名">
+                    <textarea id="atCookies" placeholder="Cookie JSON (从浏览器导出)" rows="6"></textarea>
                     <button onclick="bindAccount('atcoder')">绑定</button>
                 </div>
                 <div class="binding-card">
                     <h3>SPOJ</h3>
-                    <input type="text" id="spojHandle" placeholder="输入 SPOJ Handle">
+                    <input type="text" id="spojHandle" placeholder="用户名">
+                    <textarea id="spojCookies" placeholder="Cookie JSON (从浏览器导出)" rows="6"></textarea>
                     <button onclick="bindAccount('spoj')">绑定</button>
                 </div>
                 <div class="binding-card">
                     <h3>UVA</h3>
-                    <input type="text" id="uvaHandle" placeholder="输入 UVA Handle">
+                    <input type="text" id="uvaHandle" placeholder="用户名">
+                    <textarea id="uvaCookies" placeholder="Cookie JSON (从浏览器导出)" rows="6"></textarea>
                     <button onclick="bindAccount('uva')">绑定</button>
                 </div>
             </div>
         </div>
 
+        <!-- 远程评测页 -->
         <div id="rmjPage" class="page">
             <h1>远程评测 (RMJ)</h1>
             <div class="rmj-container">
                 <div class="form-group">
                     <label>平台</label>
                     <select id="rmjPlatform">
-                        <option value="codeforces">Codeforces</option>
                         <option value="atcoder">AtCoder</option>
                         <option value="spoj">SPOJ</option>
                         <option value="uva">UVA</option>
@@ -289,15 +298,15 @@
                 </div>
                 <div class="form-group">
                     <label>题目 ID</label>
-                    <input type="text" id="rmjProblemId" placeholder="例如：4A、abc123、TEST、100">
+                    <input type="text" id="rmjProblemId" placeholder="例如 abc123_a (AtCoder), TEST (SPOJ), 100 (UVA)">
                 </div>
                 <div class="form-group">
                     <label>语言</label>
                     <select id="rmjLanguage">
-                        <option value="javascript">JavaScript</option>
-                        <option value="python">Python</option>
                         <option value="cpp">C++</option>
+                        <option value="python">Python</option>
                         <option value="java">Java</option>
+                        <option value="javascript">JavaScript</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -309,6 +318,7 @@
             </div>
         </div>
 
+        <!-- 后台管理页 -->
         <div id="adminPage" class="page">
             <h1>后台管理</h1>
             <div class="tabs">
@@ -327,6 +337,7 @@
             </div>
         </div>
 
+        <!-- 登录页 -->
         <div id="loginPage" class="page">
             <div class="auth-container">
                 <h2>登录</h2>
@@ -338,6 +349,7 @@
                 <p class="auth-link">没有账号？<a href="#" onclick="showPage('register')">注册</a></p>
             </div>
         </div>
+        <!-- 注册页 -->
         <div id="registerPage" class="page">
             <div class="auth-container">
                 <h2>注册</h2>
@@ -351,6 +363,7 @@
                 <p class="auth-link">已有账号？<a href="#" onclick="showPage('login')">登录</a></p>
             </div>
         </div>
+        <!-- 个人中心页 -->
         <div id="profilePage" class="page">
             <h1>个人中心</h1>
             <div class="profile-container">
@@ -375,6 +388,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
 
     <script>
+        // ==================== 全局状态 ====================
         const API_BASE = '';
         let currentUser = JSON.parse(localStorage.getItem('cjzoj_user') || 'null');
         let currentProblem = null;
@@ -385,6 +399,7 @@
         let currentLanguage = 'javascript';
         let allProblems = [];
 
+        // 封装fetch
         async function api(url, method = 'GET', body = null) {
             const options = { method, headers: { 'Content-Type': 'application/json' } };
             if (body) options.body = JSON.stringify(body);
@@ -396,12 +411,14 @@
             return res.json();
         }
 
+        // ==================== 初始化 ====================
         document.addEventListener('DOMContentLoaded', () => {
             initCodeEditor();
             updateNavbar();
             showPage('problems');
         });
 
+        // ==================== 页面切换 ====================
         function showPage(pageName) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const target = document.getElementById(pageName + 'Page');
@@ -425,6 +442,7 @@
 
         function toggleMenu() { document.getElementById('navMenu').classList.toggle('show'); }
 
+        // ==================== 用户认证 ====================
         async function register(event) {
             event.preventDefault();
             const username = document.getElementById('registerUsername').value.trim();
@@ -500,6 +518,7 @@
             return true;
         }
 
+        // ==================== 题目列表 ====================
         async function loadProblems() {
             try {
                 allProblems = await api('/api/problems');
@@ -548,7 +567,7 @@
                     const tagSpan = document.createElement('span'); tagSpan.className = 'tag'; tagSpan.textContent = tag;
                     tagsTd.appendChild(tagSpan);
                 });
-                const rateTd = document.createElement('td'); rateTd.textContent = '0%';
+                const rateTd = document.createElement('td'); rateTd.textContent = '0%'; // 占位
                 tr.appendChild(statusTd); tr.appendChild(idTd); tr.appendChild(titleTd);
                 tr.appendChild(difficultyTd); tr.appendChild(tagsTd); tr.appendChild(rateTd);
                 tbody.appendChild(tr);
@@ -583,6 +602,7 @@
             } catch (err) { alert(err.message); }
         }
 
+        // ==================== 代码编辑器 ====================
         function initCodeEditor() {
             const textarea = document.getElementById('codeEditor');
             codeEditor = CodeMirror.fromTextArea(textarea, {
@@ -604,6 +624,7 @@
             };
         }
 
+        // ==================== 提交代码 ====================
         async function submitCode() {
             if (!requireAuth()) return;
             if (!currentProblem) { alert('请先选择题目'); return; }
@@ -618,9 +639,7 @@
                     language
                 });
                 showSubmissionResult('pending', '已提交，等待评测...');
-                setTimeout(() => {
-                    showSubmissionResult('info', '请查看提交记录获取结果');
-                }, 2000);
+                setTimeout(() => { showSubmissionResult('info', '请查看提交记录获取结果'); }, 2000);
             } catch (err) { alert(err.message); }
         }
 
@@ -632,6 +651,7 @@
             resultDiv.innerHTML = message;
         }
 
+        // ==================== 提交记录 ====================
         async function loadSubmissions() {
             try {
                 const subs = await api('/api/submissions');
@@ -663,6 +683,7 @@
             if (diff < 86400000) return Math.floor(diff/3600000)+'小时前'; return date.toLocaleDateString('zh-CN');
         }
 
+        // ==================== 排行榜 ====================
         async function loadRanking() {
             try {
                 const subs = await api('/api/submissions');
@@ -692,6 +713,7 @@
             } catch (err) { console.error(err); }
         }
 
+        // ==================== 讨论区 ====================
         async function loadDiscussion() {
             try {
                 const posts = await api('/api/posts');
@@ -742,6 +764,7 @@
             } catch (err) { alert(err.message); }
         }
 
+        // ==================== 文章区 ====================
         async function loadArticles() {
             try {
                 const articles = await api('/api/articles');
@@ -776,6 +799,7 @@
             } catch (err) { alert(err.message); }
         }
 
+        // ==================== 比赛 ====================
         async function loadContests() {
             try {
                 const contests = await api('/api/contests');
@@ -803,30 +827,40 @@
                 .catch(err => alert(err.message));
         }
         function showContestDetail(contestId) {
+            // 可扩展比赛详情页，目前仅提示
             alert('比赛详情功能开发中');
         }
 
+        // ==================== 绑定账号 ====================
         async function loadBindings() {
             if (!currentUser) { alert('请先登录'); return; }
             try {
                 const binding = await api(`/api/bindings/${currentUser.id}`);
-                document.getElementById('cfHandle').value = binding.codeforces || '';
-                document.getElementById('atHandle').value = binding.atcoder || '';
-                document.getElementById('spojHandle').value = binding.spoj || '';
-                document.getElementById('uvaHandle').value = binding.uva || '';
+                document.getElementById('atHandle').value = binding.atcoder ? binding.atcoder.handle : '';
+                document.getElementById('atCookies').value = binding.atcoder ? JSON.stringify(binding.atcoder.cookies) : '';
+                document.getElementById('spojHandle').value = binding.spoj ? binding.spoj.handle : '';
+                document.getElementById('spojCookies').value = binding.spoj ? JSON.stringify(binding.spoj.cookies) : '';
+                document.getElementById('uvaHandle').value = binding.uva ? binding.uva.handle : '';
+                document.getElementById('uvaCookies').value = binding.uva ? JSON.stringify(binding.uva.cookies) : '';
             } catch (err) { alert(err.message); }
         }
         async function bindAccount(platform) {
             if (!currentUser) { alert('请先登录'); return; }
-            const map = { codeforces:'cfHandle', atcoder:'atHandle', spoj:'spojHandle', uva:'uvaHandle' };
-            const handle = document.getElementById(map[platform]).value.trim();
-            if (!handle) { alert('请输入账号'); return; }
+            const map = {
+                atcoder: { handle: 'atHandle', cookies: 'atCookies' },
+                spoj: { handle: 'spojHandle', cookies: 'spojCookies' },
+                uva: { handle: 'uvaHandle', cookies: 'uvaCookies' }
+            };
+            const handle = document.getElementById(map[platform].handle).value.trim();
+            const cookiesStr = document.getElementById(map[platform].cookies).value.trim();
+            if (!handle || !cookiesStr) { alert('请输入用户名和Cookie'); return; }
             try {
-                await api('/api/bindings', 'POST', { userId: currentUser.id, platform, handle });
+                await api('/api/bindings', 'POST', { userId: currentUser.id, platform, handle, cookies: cookiesStr });
                 alert('绑定成功');
             } catch (err) { alert(err.message); }
         }
 
+        // ==================== 远程评测 ====================
         async function submitRemoteJudge() {
             if (!currentUser) { alert('请先登录'); return; }
             const platform = document.getElementById('rmjPlatform').value;
@@ -834,9 +868,10 @@
             const language = document.getElementById('rmjLanguage').value;
             const code = document.getElementById('rmjCodeEditor').value.trim();
             if (!problemId || !code) { alert('请填写完整'); return; }
+            // 检查绑定
             try {
                 const binding = await api(`/api/bindings/${currentUser.id}`);
-                if (!binding[platform]) { alert(`请先绑定 ${platform} 账号`); showPage('binding'); return; }
+                if (!binding[platform] || !binding[platform].cookies) { alert(`请先绑定 ${platform} 账号并确保包含Cookie`); showPage('binding'); return; }
             } catch (err) { alert(err.message); return; }
             try {
                 await api('/api/submissions', 'POST', { userId: currentUser.id, code, language, remotePlatform: platform, remoteProblemId: problemId });
@@ -845,6 +880,7 @@
             } catch (err) { alert(err.message); }
         }
 
+        // ==================== 后台管理 ====================
         async function loadAdmin() {
             if (!requireAdmin()) return;
             loadAdminProblems();
@@ -935,6 +971,7 @@
             try { await api('/api/admin/articles/reject', 'POST', { articleId: id }); loadAdminArticles(); } catch (err) { alert(err.message); }
         }
 
+        // ==================== 提交题目（普通用户） ====================
         function showSubmitProblem() {
             if (!requireAuth()) return;
             const title = prompt('题目标题：'); if(!title) return;
@@ -959,6 +996,7 @@
             }).then(() => alert('题目已提交，等待审核')).catch(err => alert(err.message));
         }
 
+        // ==================== Markdown 和 KaTeX 渲染 ====================
         function renderMarkdown(text) { return marked.parse(text); }
         function renderMathInElement(element) {
             if (window.renderMathInElement) {
@@ -966,6 +1004,7 @@
             }
         }
 
+        // ==================== 个人中心 ====================
         async function loadProfile() {
             if (!currentUser) { alert('请先登录'); return; }
             document.getElementById('profileUsername').textContent = currentUser.username;
